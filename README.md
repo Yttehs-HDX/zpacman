@@ -2,9 +2,9 @@
 
 A simple, small omz plugin manager
 
-# Installaton
+# Installation
 
-Please install ``zsh`` [``oh my zsh``](https://ohmyz.sh/#install)
+Please install ``zsh`` [``oh my zsh``](https://ohmyz.sh/#install) first.
 
 ```bash
 $ git clone https://github.com/Yttehs-HDX/zpacman.git --depth=1 ~/.zpacman
