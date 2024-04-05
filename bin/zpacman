@@ -117,7 +117,7 @@ def main():
             help()
         elif command == "list":
             for plugin in plugins:
-                print(f"{plugin.name}\t{plugin.url}")
+                print(plugin.name, end = " ")
             sys.exit()
         elif command == "reload":
             on_exit()
