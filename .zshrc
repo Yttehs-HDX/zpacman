@@ -21,7 +21,7 @@ ZSH_CUSTOM_AUTOUPDATE_QUIET=true
 # zsh-syntax-highlighting
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=cyan,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=white,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=cyan,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
 
 # p10k theme
