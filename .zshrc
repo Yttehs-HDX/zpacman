@@ -22,6 +22,7 @@ ZSH_CUSTOM_AUTOUPDATE_QUIET=true
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=cyan,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=cyan,underline
+ZSH_HIGHLIGHT_STYLES[path]=fg=green
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
 
 # p10k theme
