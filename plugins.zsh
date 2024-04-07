@@ -7,6 +7,7 @@ plugins=(
 	adb
 	archlinux
 	autojump
+	colored-man-pages
 	command-not-found
 	copypath copyfile
 	cp
