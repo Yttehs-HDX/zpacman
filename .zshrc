@@ -10,6 +10,9 @@ source $ZPACMAN/zpacman.sh
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
+# aliases
+alias y='yaupg && yaclean'
+
 # custom settings
 source ~/.bashrc
 
