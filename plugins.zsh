@@ -16,7 +16,6 @@ plugins=(
 	git
 	github
 	gradle
-	history
 	history-substring-search
 	kate
 	python

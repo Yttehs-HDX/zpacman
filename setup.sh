@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#!/bin/sh
-
 ZPACMAN=~/.zpacman
 
 GREEN='\033[0;32m'
