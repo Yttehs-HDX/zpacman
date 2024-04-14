@@ -2,6 +2,8 @@
 
 A simple, small omz plugin manager
 
+Including my own zsh config ( .zhsrc )
+
 # Installation
 
 Please install ``zsh`` [``oh my zsh``](https://ohmyz.sh/#install) first.
