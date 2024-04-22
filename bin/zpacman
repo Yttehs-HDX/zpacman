@@ -120,6 +120,8 @@ def main():
                 print(plugin.name, end = " ")
             sys.exit()
         elif command == "reload":
+            for plugin in plugins:
+                plugin.install()
             on_exit()
             sys.exit()
         else:
