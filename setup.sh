@@ -17,4 +17,4 @@ else
 	echo 'source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
 fi
 
-zpacman reload
+$ZPACMAN/bin/zpacman reload
