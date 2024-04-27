@@ -13,6 +13,7 @@ plugins=(
 	cp
 	docker
 	extract
+	fzf
 	git
 	github
 	gradle
