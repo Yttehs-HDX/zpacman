@@ -13,6 +13,7 @@ plugins=(
 	cp
 	docker
 	extract
+	eza
 	fzf
 	git
 	github
