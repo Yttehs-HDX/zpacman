@@ -14,6 +14,8 @@ echo -e "${GREEN}Done${RESET}"
 read -p "Overwrite ~/.zshrc? [Y/n] " answer
 if [ "$answer" != "N" ] && [ "$answer" != "n" ]; then
 	cp $ZPACMAN/.zshrc ~/.zshrc
+else
+	echo "source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
 fi
 
 $ZPACMAN/bin/zpacman reload
