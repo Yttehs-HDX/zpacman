@@ -8,8 +8,8 @@ plugins=(
 	autojump
 	colored-man-pages
 	command-not-found
-	copypath
 	copyfile
+	copypath
 	cp
 	docker
 	extract
