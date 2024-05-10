@@ -6,6 +6,8 @@ Including my own zsh config ( ``.zshrc`` )
 
 # Installation
 
+### If you are using ArchLinux: Refer to branch [`archlinux`](../archlinux/README.md)
+
 Please install ``zsh`` first.
 
 ```bash
