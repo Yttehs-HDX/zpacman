@@ -5,11 +5,11 @@
 
 plugins=(
 	adb
-	archlinux
 	autojump
 	colored-man-pages
 	command-not-found
-	copypath copyfile
+	copypath
+	copyfile
 	cp
 	docker
 	extract
