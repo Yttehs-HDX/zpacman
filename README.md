@@ -26,3 +26,12 @@ Usage: zpacman install <name> [url]
        zpacman list
        zpacman reload
 ```
+
+# Warning
+
+The following commands are no longer working:
+
+```bash
+omz plugin enable <plugin_name>
+omz plugin disable <plugin_name>
+```
