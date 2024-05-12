@@ -2,6 +2,7 @@
 
 import sys
 import os
+import shutil
 import subprocess
 
 HOME = os.path.expanduser("~")
@@ -57,7 +58,7 @@ def install_plugin(name, url = ""):
 def uninstall_plugin(name):
     plugin_dir = f"{ZSH_CUSTOM_PLUGIN}/{name}"
     if os.path.exists(plugin_dir):
-        subprocess.run(["rm", "-rf", plugin_dir])
+        shutil.rmtree(plugin_dir)
 
     for plugin in plugins:
         if plugin.name == name:
