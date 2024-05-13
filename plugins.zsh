@@ -34,4 +34,5 @@ plugins=(
 	zsh-random-quotes	# https://github.com/vkolagotla/zsh-random-quotes
 	zsh-syntax-highlighting	# https://github.com/zsh-users/zsh-syntax-highlighting
 	zsh-you-should-use	# https://github.com/MichaelAquilina/zsh-you-should-use
+	zsh-zpacman	# https://github.com/Yttehs-HDX/zsh-zpacman
 )
