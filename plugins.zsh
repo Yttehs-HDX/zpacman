@@ -15,6 +15,7 @@ plugins=(
 	extract
 	eza
 	fzf
+	gh
 	git
 	github
 	gradle
