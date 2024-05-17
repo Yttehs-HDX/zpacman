@@ -3,7 +3,6 @@
 import sys
 import os
 import shutil
-import subprocess
 
 HOME = os.path.expanduser("~")
 ZPACMAN = f"{HOME}/.zpacman"
@@ -28,7 +27,7 @@ class plugin():
         if self.url == "":
             return
         if not os.path.exists(f"{ZSH_CUSTOM_PLUGIN}/{self.name}"):
-            subprocess.run(["git", "clone", "--depth=1", self.url, f"{ZSH_CUSTOM_PLUGIN}/{self.name}"])
+            os.system(f"git clone --depth=1 {self.url} {ZSH_CUSTOM_PLUGIN}/{self.name}")
 
 plugins = []
 
