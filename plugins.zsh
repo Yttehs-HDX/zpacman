@@ -17,7 +17,9 @@ plugins=(
 	fzf
 	gh
 	git
+	gitfast
 	github
+	gitignore
 	gradle
 	history-substring-search
 	kate
