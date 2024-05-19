@@ -2,13 +2,13 @@
 
 A simple, small omz plugin manager
 
-Including my own zsh config ( ``.zshrc`` )
+Including my own zsh config ( `.zshrc` )
 
 # Installation
 
 ### If you are using ArchLinux: Refer to branch [`archlinux`](../archlinux)
 
-Please install ``zsh`` first.
+Please install `zsh` `curl` first.
 
 ```bash
 git clone https://github.com/Yttehs-HDX/zpacman.git --depth=1 ~/.zpacman
