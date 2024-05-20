@@ -16,7 +16,6 @@ plugins=(
 	eza
 	fzf
 	git
-	gitfast
 	github
 	gitignore
 	gradle
