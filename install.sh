@@ -3,7 +3,7 @@
 ZPACMAN=~/.zpacman
 
 if [ -d $ZPACMAN ]; then
-	echo -e "\e[0;31mzpacman is already installed, updating...\e[0m"
+	echo -e "\e[0;33mzpacman is already installed, updating...\e[0m"
 	cd $ZPACMAN && git pull
 	$ZPACMAN/bin/zpacman reload
 else
