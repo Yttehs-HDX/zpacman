@@ -11,9 +11,7 @@ Including my own zsh config ( `.zshrc` )
 Please install `zsh` `curl` first.
 
 ```bash
-git clone https://github.com/Yttehs-HDX/zpacman.git --depth=1 ~/.zpacman
-cd ~/.zpacman
-./setup.sh
+curl -fsSL https://github.com/Yttehs-HDX/zpacman/raw/universal/install.sh | bash
 ```
 
 # Function
