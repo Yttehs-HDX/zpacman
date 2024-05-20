@@ -17,7 +17,6 @@ plugins=(
 	fzf
 	gh
 	git
-	gitfast
 	github
 	gitignore
 	gradle
