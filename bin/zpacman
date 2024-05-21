@@ -14,6 +14,7 @@ ZSH_OFFICIAL_PLUGIN = f"{OH_MY_ZSH}/plugins"
 ZSH_CUSTOM_PLUGIN = f"{OH_MY_ZSH}/custom/plugins"
 
 RED = '\033[91m'
+YELLOW = '\033[93m'
 GREEN = '\033[92m'
 CYAN = '\033[96m'
 RESET = '\033[0m'
@@ -117,7 +118,10 @@ def main():
             help()
         elif command == "list":
             for plugin in plugins:
-                print(plugin.name, end = " ")
+                if plugin.url:
+                    print(f"{plugin.name} {YELLOW}({plugin.url}){RESET}")
+                else:
+                    print(plugin.name)
             sys.exit()
         elif command == "reload":
             for plugin in plugins:
