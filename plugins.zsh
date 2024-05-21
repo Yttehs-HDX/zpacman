@@ -12,6 +12,8 @@ plugins=(
 	copypath
 	cp
 	docker
+	emoji
+	emoji-clock
 	extract
 	eza
 	fzf
