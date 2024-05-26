@@ -35,3 +35,7 @@ The following commands are no longer working:
 omz plugin enable <plugin_name>
 omz plugin disable <plugin_name>
 ```
+
+## License
+
+MIT
