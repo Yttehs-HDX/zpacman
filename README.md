@@ -4,7 +4,7 @@ A simple, small omz plugin manager
 
 Including my own zsh config ( `.zshrc` )
 
-# Installation
+## Installation
 
 ### If you are using ArchLinux: Refer to branch [`archlinux`](../archlinux)
 
@@ -14,7 +14,7 @@ Please install `zsh` `curl` first.
 curl -fsSL https://github.com/Yttehs-HDX/zpacman/raw/universal/install.sh | bash
 ```
 
-# Function
+## Function
 
 Please refer to **zpacman help**
 
@@ -27,7 +27,7 @@ Usage: zpacman install <name> [url]
        zpacman reload
 ```
 
-# Warning
+## Warning
 
 The following commands are no longer working:
 
