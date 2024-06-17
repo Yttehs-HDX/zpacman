@@ -13,7 +13,15 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias eza='eza --icons'
 alias tree='ls --tree'
-alias y='yaupg && yaclean'
+
+# functions
+y() {
+	yaupg	# update all packages
+	yaclean # clean cache
+	if pacman -Qtdq | grep -q "^"; then
+		pacrmorphans # clean unused packages
+	fi
+}
 
 # custom settings
 source ~/.bashrc
