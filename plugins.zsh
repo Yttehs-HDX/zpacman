@@ -18,6 +18,7 @@ plugins=(
 	eza
 	fzf
 	git
+	git-lfs
 	github
 	gitignore
 	gradle
