@@ -19,6 +19,7 @@ plugins=(
 	fzf
 	gh
 	git
+	git-lfs
 	github
 	gitignore
 	gradle
