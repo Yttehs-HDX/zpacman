@@ -11,7 +11,7 @@ export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # aliases
-alias eza='eza --icons'
+alias eza='exa --icons'
 alias tree='ls --tree'
 
 # functions
