@@ -25,6 +25,7 @@ plugins=(
 	gradle
 	history-substring-search
 	kate
+	nmap
 	python
 	rand-quote
 	safe-paste
