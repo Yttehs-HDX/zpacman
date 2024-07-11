@@ -77,6 +77,7 @@ def get_plugin_info(name):
         sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
     if os.path.exists(f"{plugin.dir}/README.md"):
         os.system(f"less {plugin.dir}/README.md")
+        sys.exit(0)
     else:
         sys.exit(f"{RED}No README.md found{RESET}")
 
