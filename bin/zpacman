@@ -23,6 +23,10 @@ class plugin():
     def __init__(self, name, url = ""):
         self.name = name
         self.url = url
+        if url == "":
+            self.dir = f"{ZSH_OFFICIAL_PLUGIN}/{name}"
+        else:
+            self.dir = f"{ZSH_CUSTOM_PLUGIN}/{name}"
     def install(self):
         # clone custom plugin
         if self.url == "":
@@ -66,6 +70,15 @@ def uninstall_plugin(name):
             print(f"{GREEN}Plugin '{name}' uninstalled{RESET}")
             return
     sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
+
+def get_plugin_info(name):
+    plugin = next(filter(lambda x: x.name == name, plugins), None)
+    if plugin == None:
+        sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
+    if os.path.exists(f"{plugin.dir}/README.md"):
+        os.system(f"less {plugin.dir}/README.md")
+    else:
+        sys.exit(f"{RED}No README.md found{RESET}")
 
 def help():
     print(f"{CYAN}Usage:{RESET} zpacman install <name> [url]")
@@ -141,6 +154,8 @@ def main():
         install_plugin(name, url)
     elif command == "uninstall":
         uninstall_plugin(name)
+    elif command == "info":
+        get_plugin_info(name)
     elif command == "help":
         help()
     else:
