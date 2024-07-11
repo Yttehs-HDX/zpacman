@@ -28,6 +28,7 @@ plugins=(
 	nmap
 	python
 	rand-quote
+	rust
 	safe-paste
 	ssh
 	sudo
