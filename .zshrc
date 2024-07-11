@@ -3,8 +3,7 @@
 #
 
 # zpacman
-export ZPACMAN="$HOME/.zpacman"
-source $ZPACMAN/zpacman.sh
+source $HOME/.zpacman/zpacman.sh
 
 # oh my zsh
 export ZSH="$HOME/.oh-my-zsh"

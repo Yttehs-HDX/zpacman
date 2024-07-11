@@ -1,5 +1,4 @@
 #!/bin/sh
 
-export PATH=$PATH:$ZPACMAN/bin
-
-source $ZPACMAN/plugins.zsh
+export PATH=$PATH:$HOME/.zpacman/bin
+source $HOME/.zpacman/plugins.zsh
