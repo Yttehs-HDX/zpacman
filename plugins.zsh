@@ -4,7 +4,6 @@
 #
 
 plugins=(
-	adb
 	archlinux
 	autojump
 	colored-man-pages
