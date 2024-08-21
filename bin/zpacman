@@ -82,9 +82,10 @@ def get_plugin_info(name):
         sys.exit(f"{RED}No README.md found{RESET}")
 
 def help():
-    print(f"{CYAN}Usage:{RESET} zpacman install <name> [url]")
-    print("       zpacman install <url>")
-    print("       zpacman uninstall <name>")
+    print(f"{CYAN}Usage:{RESET} zpacman install {YELLOW}<{RESET}name{YELLOW}>{RESET} {YELLOW}[{RESET}url{YELLOW}]{RESET}")
+    print(f"       zpacman install {YELLOW}<{RESET}url{YELLOW}>{RESET}")
+    print(f"       zpacman uninstall {YELLOW}<{RESET}name{YELLOW}>{RESET}")
+    print(f"       zpacman info {YELLOW}<{RESET}name{YELLOW}>{RESET}")
     print("       zpacman list")
     print("       zpacman reload")
     sys.exit()
