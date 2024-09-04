@@ -9,7 +9,11 @@ if [ -d $ZPACMAN ]; then
 else
 	git clone	https://github.com/Yttehs-HDX/zpacman.git --branch=archlinux --depth=1 $ZPACMAN
 	echo -e "\e[1;32mzpacman installed successfully\e[0m"
-	cd $ZPACMAN && ./setup.sh
+
+	read -rp "Overwrite ~/.zshrc? [Y/n] " answer
+	if [ "$answer" != "N" ] && [ "$answer" != "n" ]; then
+		cp $ZPACMAN/.zshrc ~/.zshrc
+	fi
+
+	$ZPACMAN/bin/zpacman reload
 fi
-
-
