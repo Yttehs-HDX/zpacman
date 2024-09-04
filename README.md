@@ -9,6 +9,7 @@ Including my own zsh config ( `.zshrc` )
 Please install `zsh` `curl` `zsh-theme-powerlevel10k-git`( AUR ) first.
 
 ```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 curl -fsSL https://github.com/Yttehs-HDX/zpacman/raw/archlinux/install.sh | bash
 ```
 
