@@ -26,6 +26,7 @@ plugins=(
 	history-substring-search
 	kate
 	nmap
+	npm
 	python
 	rand-quote
 	rust
