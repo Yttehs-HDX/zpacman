@@ -11,6 +11,7 @@ plugins=(
 	copypath copyfile
 	cp
 	docker
+	dotnet
 	emoji
 	emoji-clock
 	extract
