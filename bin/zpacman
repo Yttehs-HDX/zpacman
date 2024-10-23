@@ -4,166 +4,195 @@ import sys
 import os
 import shutil
 
-HOME = os.path.expanduser("~")
-ZPACMAN = f"{HOME}/.zpacman"
-PLUGIN_CONF = f"{ZPACMAN}/plugins.zsh"
-OH_MY_ZSH = f"{HOME}/.oh-my-zsh"
-if not os.path.exists(OH_MY_ZSH):
-    sys.exit(f"Please install oh my zsh first")
-ZSH_OFFICIAL_PLUGIN = f"{OH_MY_ZSH}/plugins"
-ZSH_CUSTOM_PLUGIN = f"{OH_MY_ZSH}/custom/plugins"
+HOME = os.environ['HOME']
+ZPACMAN_PATH = f'{HOME}/.zpacman'
+OH_MY_ZSH_PATH = f'{HOME}/.oh-my-zsh'
+OFFICIAL_PLUGIN_PATH = f'{OH_MY_ZSH_PATH}/plugins'
+CUSTOM_PLUGIN_PATH = f'{OH_MY_ZSH_PATH}/custom/plugins'
+PLUGINS_PATH = f'{ZPACMAN_PATH}/plugins.zsh'
 
 RED = '\033[91m'
 YELLOW = '\033[93m'
 GREEN = '\033[92m'
+BLUE = '\033[94m'
 CYAN = '\033[96m'
 RESET = '\033[0m'
 
-class plugin():
-    def __init__(self, name, url = ""):
+def is_url(url: str) -> bool:
+    return url.startswith('http://') or url.startswith('https://')
+def check_file_exists(path: str) -> bool:
+    return os.path.exists(path)
+
+class Plugin():
+    def __init__(self, name: str, url: str = ''):
+        if is_url(name):
+            name, url = name.split('/')[-1], name
         self.name = name
         self.url = url
-        if url == "":
-            self.dir = f"{ZSH_OFFICIAL_PLUGIN}/{name}"
+        if self.is_custom():
+            self.dir = f'{CUSTOM_PLUGIN_PATH}/{name}'
         else:
-            self.dir = f"{ZSH_CUSTOM_PLUGIN}/{name}"
-    def install(self):
-        # clone custom plugin
-        if self.url == "":
+            self.dir = f'{OFFICIAL_PLUGIN_PATH}/{name}'
+
+    def sync_repo(self) -> None:
+        if not self.is_custom():
             return
-        if not os.path.exists(f"{ZSH_CUSTOM_PLUGIN}/{self.name}"):
-            os.system(f"git clone --depth=1 {self.url} {ZSH_CUSTOM_PLUGIN}/{self.name}")
+        if check_file_exists(self.dir): # pull if exists
+            os.system(f'git -C {self.dir} pull')
+        else: # clone if not exists
+            os.system(f'git clone --depth=1 {self.url} {self.dir}')
 
-plugins = []
-
-def is_plugin_installed(name):
-    for plugin in plugins:
-        if plugin.name == name:
-            return True
-    return False
-
-def install_plugin(name, url = ""):
-    if name.startswith("http"):
-        name, url = name.split("/")[-1], name
-
-    p = plugin(name, url)
-    if not is_plugin_installed(name):
-        plugins.append(p)
-    else:
-        print(f"{RED}Plugin '{name}' already installed{RESET}")
-        sys.exit()
-    if url == "":
-        if not os.path.exists(f"{ZSH_OFFICIAL_PLUGIN}/{name}"):
-            sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
-    else:
-        p.install()
-    print(f"{GREEN}Plugin '{name}' installed{RESET}")
-
-def uninstall_plugin(name):
-    plugin_dir = f"{ZSH_CUSTOM_PLUGIN}/{name}"
-    if os.path.exists(plugin_dir):
-        shutil.rmtree(plugin_dir)
-
-    for plugin in plugins:
-        if plugin.name == name:
-            plugins.remove(plugin)
-            print(f"{GREEN}Plugin '{name}' uninstalled{RESET}")
+    def remove_files(self) -> None:
+        if not self.is_custom():
             return
-    sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
+        if check_file_exists(self.dir):
+            shutil.rmtree(self.dir)
 
-def get_plugin_info(name):
-    plugin = next(filter(lambda x: x.name == name, plugins), None)
+    def is_custom(self) -> bool:
+        return self.url != ''
+
+    def is_valid(self) -> bool:
+        if self.is_custom():
+            return is_url(self.url)
+        else:
+            return check_file_exists(self.dir)
+
+plugin_list = []
+
+def get_plugin(name: str) -> Plugin:
+    return next(filter(lambda x: x.name == name, plugin_list), None)
+
+def add_plugin(name: str, url: str = ''):
+    plugin = Plugin(name, url)
+    if not plugin.is_valid():
+        sys.exit(f'{RED}Plugin \'{name}\' not found{RESET}')
+    if get_plugin(name):
+        sys.exit(f'{RED}Plugin \'{name}\' already exists{RESET}')
+
+    plugin.sync_repo()
+    plugin_list.append(plugin)
+    print(f'{GREEN}Plugin \'{name}\' installed{RESET}')
+
+def remove_plugin(name: str):
+    plugin = get_plugin(name)
     if plugin == None:
-        sys.exit(f"{RED}Plugin '{name}' not found{RESET}")
-    if os.path.exists(f"{plugin.dir}/README.md"):
-        os.system(f"less {plugin.dir}/README.md")
-        sys.exit(0)
-    else:
-        sys.exit(f"{RED}No README.md found{RESET}")
+        sys.exit(f'{RED}Plugin \'{name}\' not found{RESET}')
 
-def help():
-    print(f"{CYAN}Usage:{RESET} zpacman install {YELLOW}<{RESET}name{YELLOW}>{RESET} {YELLOW}[{RESET}url{YELLOW}]{RESET}")
-    print(f"       zpacman install {YELLOW}<{RESET}url{YELLOW}>{RESET}")
-    print(f"       zpacman uninstall {YELLOW}<{RESET}name{YELLOW}>{RESET}")
-    print(f"       zpacman info {YELLOW}<{RESET}name{YELLOW}>{RESET}")
-    print("       zpacman list")
-    print("       zpacman reload")
-    sys.exit()
+    plugin.remove_files()
+    plugin_list.remove(plugin)
+    print(f'{GREEN}Plugin \'{name}\' uninstalled{RESET}')
 
-def unknown_command():
-    print(f"{RED}Unknown command{RESET}")
-    print(f"{CYAN}See 'zpacman help' for usage{RESET}")
-    sys.exit(1)
+def read_plugin_info(name: str):
+    plugin = get_plugin(name)
+    if plugin:
+        readme_path = f'{plugin.dir}/README.md'
+    elif check_file_exists(f'{OFFICIAL_PLUGIN_PATH}/{name}'):
+        readme_path = f'{OFFICIAL_PLUGIN_PATH}/{name}/README.md'
+    if not check_file_exists(readme_path):
+        sys.exit(f'{RED}No README.md found{RESET}')
 
-def read_plugins():
-    with open(PLUGIN_CONF, "r") as f:
+    pager = os.environ.get('PAGER', 'less')
+    os.system(f'{pager} {readme_path}')
+    sys.exit(0)
+
+def read_plugins() -> None:
+    with open(PLUGINS_PATH, 'r') as f:
         lines = f.readlines()[6:-1]
         for line in lines:
             line = line.strip()
-            if line and not line.startswith("#"):
-                name, _, url = line.partition("#")
+            if line and not line.startswith('#'):
+                name, _, url = line.partition('#')
                 name = name.strip()
                 url = url.strip()
-                plugins.append(plugin(name, url))
-    return plugins
+                plugin_list.append(Plugin(name, url))
 
-def write_config():
-    with open(PLUGIN_CONF, "w") as f:
-        f.write("#\n")
-        f.write("# plugins.zsh\n")
-        f.write("# generated by zpacman, do not edit\n")
-        f.write("#\n")
-        f.write("\n")
-        f.write("plugins=(\n")
-        for plugin in plugins:
-            f.write(f"\t{plugin.name}\t# {plugin.url}\n" if plugin.url else f"\t{plugin.name}\n")
-        f.write(")\n")
+def write_plugins() -> None:
+    plugin_list.sort(key = lambda x: x.name)
+    with open(PLUGINS_PATH, 'w') as f:
+        f.write('#\n')
+        f.write('# ~/.zpacman/plugins.zsh\n')
+        f.write('# Generated by ZPacman, do not edit\n')
+        f.write('#\n')
+        f.write('\n')
+        f.write('plugins=(\n')
+        for plugin in plugin_list:
+            f.write(f'\t{plugin.name}\t# {plugin.url}\n' if plugin.is_custom() else f'\t{plugin.name}\n')
+        f.write(')\n')
 
-def on_exit():
-    plugins.sort(key = lambda x: x.name)
-    write_config()
-    print(f"{CYAN}Please restart zsh or use 'source ~/.zshrc' to apply changes{RESET}")
+def check_env():
+    if not check_file_exists(OH_MY_ZSH_PATH):
+        sys.exit(f'{RED}Oh My Zsh not found{RESET}')
 
-def main():
+def assert_argv_len(*len_opts: int) -> None:
+    if len(sys.argv) not in len_opts:
+        unknown_command_handle()
+
+def print_zpacman_info():
+    print(f'{CYAN}ZPacman{RESET} - OMZ Plugin Manager by {YELLOW}Yttehs-HDX@Github{RESET}')
+    print()
+    print(f'{BLUE}Usage:{RESET} zpacman install {YELLOW}<{RESET}name{YELLOW}>{RESET} {YELLOW}[{RESET}url{YELLOW}]{RESET}')
+    print(f'       zpacman install {YELLOW}<{RESET}url{YELLOW}>{RESET}')
+    print(f'       zpacman uninstall {YELLOW}<{RESET}name{YELLOW}>{RESET}')
+    print(f'       zpacman info {YELLOW}<{RESET}name{YELLOW}>{RESET}')
+    print('       zpacman list')
+    print('       zpacman reload')
+    sys.exit()
+
+def unknown_command_handle():
+    print(f'{RED}Unknown command{RESET}')
+    print(f'{CYAN}Run \'zpacman help\' for more information{RESET}')
+    sys.exit(1)
+
+def on_enter() -> None:
+    check_env()
     read_plugins()
 
-    if len(sys.argv) == 2:
-        command = sys.argv[1]
-        if command == "help":
-            help()
-        elif command == "list":
-            for plugin in plugins:
-                if plugin.url:
-                    print(f"{plugin.name} {YELLOW}({plugin.url}){RESET}")
-                else:
-                    print(plugin.name)
-            sys.exit()
-        elif command == "reload":
-            for plugin in plugins:
-                plugin.install()
-            on_exit()
-            sys.exit()
-        else:
-            unknown_command()
-    if len(sys.argv) < 3:
-        unknown_command()
+def on_exit() -> None:
+    write_plugins()
+    print(f'{CYAN}Please restart zsh or use \'source ~/.zshrc\' to apply changes{RESET}')
 
-    command = sys.argv[1]
-    name = sys.argv[2]
-    url = sys.argv[3] if len(sys.argv) > 3 else ""
+def main():
+    on_enter()
 
-    if command == "install":
-        install_plugin(name, url)
-    elif command == "uninstall":
-        uninstall_plugin(name)
-    elif command == "info":
-        get_plugin_info(name)
-    elif command == "help":
-        help()
+    argv_len = len(sys.argv)
+    command = sys.argv[1] if argv_len > 1 else ''
+    name = sys.argv[2] if argv_len > 2 else ''
+    url = sys.argv[3] if argv_len > 3 else ''
+
+    if command == 'help':
+        assert_argv_len(2)
+        print_zpacman_info()
+
+    elif command == 'install':
+        assert_argv_len(3, 4)
+        add_plugin(name, url)
+
+    elif command == 'uninstall':
+        assert_argv_len(3)
+        remove_plugin(name)
+
+    elif command == 'info':
+        assert_argv_len(3)
+        read_plugin_info(name)
+
+    elif command == 'list':
+        assert_argv_len(2)
+        for plugin in plugin_list:
+            if plugin.is_custom():
+                print(f'{plugin.name} {YELLOW}({plugin.url}){RESET}')
+            else:
+                print(plugin.name)
+        sys.exit()
+
+    elif command == 'reload':
+        assert_argv_len(2)
+        for plugin in plugin_list:
+            plugin.sync_repo()
+
     else:
-        unknown_command()
+        unknown_command_handle()
 
     on_exit()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
