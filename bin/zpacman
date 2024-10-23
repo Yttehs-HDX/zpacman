@@ -9,7 +9,7 @@ ZPACMAN_PATH = f'{HOME}/.zpacman'
 OH_MY_ZSH_PATH = f'{HOME}/.oh-my-zsh'
 OFFICIAL_PLUGIN_PATH = f'{OH_MY_ZSH_PATH}/plugins'
 CUSTOM_PLUGIN_PATH = f'{OH_MY_ZSH_PATH}/custom/plugins'
-PLUGINS_PATH = f'{ZPACMAN_PATH}/plugins.zsh'
+PLUGINS_PATH = f'{ZPACMAN_PATH}/config/plugins.zsh'
 
 RED = '\033[91m'
 YELLOW = '\033[93m'
