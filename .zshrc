@@ -3,14 +3,14 @@
 #
 
 # zpacman
-source $HOME/.zpacman/zpacman.sh
+source $HOME/.zpacman/bin/env
 
 # oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # aliases
-alias eza='exa --icons'
+alias eza='eza --icons'
 alias tree='ls --tree'
 
 # functions
