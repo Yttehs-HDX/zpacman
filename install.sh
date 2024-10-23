@@ -1,19 +1,12 @@
 #!/bin/bash
 
-ZPACMAN=~/.zpacman
+ZPACMAN_PATH="$HOME/.zpacman"
+ZSHRC_PATH="$HOME/.zshrc"
 
-if [ -d $ZPACMAN ]; then
-	echo -e "\e[0;33mzpacman is already installed, updating...\e[0m"
-	cd $ZPACMAN && git pull
-	$ZPACMAN/bin/zpacman reload
-else
-	git clone	https://github.com/Yttehs-HDX/zpacman.git --branch=archlinux --depth=1 $ZPACMAN
-	echo -e "\e[1;32mzpacman installed successfully\e[0m"
-
-	read -rp "Overwrite ~/.zshrc? [Y/n] " answer
-	if [ "$answer" != "N" ] && [ "$answer" != "n" ]; then
-		cp $ZPACMAN/.zshrc ~/.zshrc
-	fi
-
-	$ZPACMAN/bin/zpacman reload
+if [ -f $ZSHRC_PATH ]; then
+	echo 'Backing up current .zshrc file'
+	mv $ZSHRC_PATH $ZSHRC_PATH.bak
 fi
+
+echo "Creating symbolic link to $ZSHRC_PATH"
+ln -sf $ZPACMAN_PATH/zsh_config $ZSHRC_PATH
