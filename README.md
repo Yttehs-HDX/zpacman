@@ -19,9 +19,12 @@ Please refer to **zpacman help**
 
 ```bash
 $ zpacman help
+ZPacman - OMZ Plugin Manager by Yttehs-HDX@Github
+
 Usage: zpacman install <name> [url]
        zpacman install <url>
        zpacman uninstall <name>
+       zpacman info <name>
        zpacman list
        zpacman reload
 ```
