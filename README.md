@@ -1,8 +1,12 @@
-# ZPacman
+# ZPacman Example - ArchLinux
 
 A simple, small omz plugin manager
 
-Including my own zsh config ( `.zshrc` )
+## Features
+
+- Plugins: [config/plugins-example.zsh](config/plugins-example.zsh)
+
+- Theme: [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 ## Installation
 

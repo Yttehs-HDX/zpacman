@@ -1,0 +1,4 @@
+yay
+autojump
+pkgfile
+eza
