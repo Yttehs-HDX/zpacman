@@ -178,10 +178,7 @@ def main():
     elif command == 'list':
         assert_argv_len(2)
         for plugin in plugin_list:
-            if plugin.is_custom():
-                print(f'{plugin.name} {YELLOW}({plugin.url}){RESET}')
-            else:
-                print(plugin.name)
+            print(f'{plugin.name} {YELLOW}({plugin.url}){RESET}' if plugin.is_custom() else plugin.name)
         sys.exit()
 
     elif command == 'reload':
