@@ -1,4 +1,4 @@
-# ZPacman for ArchLinux
+# ZPacman
 
 A simple, small omz plugin manager
 
@@ -6,16 +6,25 @@ Including my own zsh config ( `.zshrc` )
 
 ## Installation
 
-Please install `zsh` `curl` `zsh-theme-powerlevel10k-git`( AUR ) first.
+1. Install `zsh` `curl` first.
+
+2. Install Oh My Zsh.
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-curl -fsSL https://github.com/Yttehs-HDX/zpacman/raw/archlinux/install.sh | bash
+```
+
+3. Install ZPacman.
+
+```bash
+git clone https://github.com/Yttehs-HDX/zpacman.git ~/.zpacman
+cd ~/.zpacman
+make
 ```
 
 ## Function
 
-Please refer to **zpacman help**
+Refer to **zpacman help**
 
 ```bash
 $ zpacman help
