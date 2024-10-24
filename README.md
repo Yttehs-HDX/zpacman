@@ -2,8 +2,6 @@
 
 A simple, small omz plugin manager
 
-Including my own zsh config ( `.zshrc` )
-
 ## Installation
 
 1. Install `zsh` `curl` first.
