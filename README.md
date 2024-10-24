@@ -17,7 +17,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 3. Install ZPacman.
 
 ```bash
-git clone https://github.com/Yttehs-HDX/zpacman.git ~/.zpacman
+git clone --depth 1 https://github.com/Yttehs-HDX/zpacman.git ~/.zpacman
 cd ~/.zpacman
 make
 ```
