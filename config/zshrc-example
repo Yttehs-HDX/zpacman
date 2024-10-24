@@ -14,13 +14,6 @@ alias eza='exa --icons'
 alias tree='ls --tree'
 
 # functions
-y() {
-	yaupg	# update all packages
-	yaclean # clean cache
-	if pacman -Qtdq | grep -q "^"; then
-		pacrmorphans # clean unused packages
-	fi
-}
 
 # custom settings
 source ~/.bashrc
@@ -38,5 +31,5 @@ ZSH_HIGHLIGHT_STYLES[path]=fg=green
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 
 # p10k theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

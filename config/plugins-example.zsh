@@ -4,7 +4,6 @@
 #
 
 plugins=(
-	archlinux
 	autojump
 	colored-man-pages
 	command-not-found

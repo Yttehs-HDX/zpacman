@@ -4,6 +4,7 @@ import os
 
 HOME = os.environ['HOME']
 ZPACMAN_PATH = f'{HOME}/.zpacman'
+P10K_PATH = f'{HOME}/.powerlevel10k'
 
 ZSHRC_SRC_PATH = f'{ZPACMAN_PATH}/config/zshrc-example'
 ZSHRC_DST_PATH = f'{HOME}/.zshrc'
@@ -38,8 +39,16 @@ def gen_config() -> None:
     print(f'{BLUE}Generating {P10K_DST_PATH}{RESET}')
     os.system(f'cp {P10K_SRC_PATH} {P10K_DST_PATH}')
 
+def clone_p10k_theme() -> None:
+    print(f'{GREEN}Cloning Powerlevel10k theme...{RESET}')
+    if os.path.exists(P10K_PATH): # pull if exists
+        os.system(f'git -C {P10K_PATH} pull')
+    else: # clone if not exists
+        os.system(f'git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git {P10K_PATH}')
+
 def main():
     backup()
+    clone_p10k_theme()
     gen_config()
 
 if __name__ == '__main__':

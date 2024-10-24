@@ -1,8 +1,10 @@
-# ZPacman Example - ArchLinux
+# ZPacman Example - Universal
 
 A simple, small omz plugin manager
 
 ## Features
+
+You need manually install pakages `autojump`, `eza`, and a [command-not-found handler](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found#supported-platforms).
 
 - Plugins: [config/plugins-example.zsh](config/plugins-example.zsh)
 
