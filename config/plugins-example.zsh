@@ -4,4 +4,5 @@
 #
 
 plugins=(
+	zsh-zpacman	# https://github.com/Yttehs-HDX/zsh-zpacman
 )
