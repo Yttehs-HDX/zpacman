@@ -36,6 +36,12 @@ Usage: zpacman install <name> [url]
        zpacman reload
 ```
 
+## My Custom Configs
+
+- ArchLinux: branch [example-archlinux](https://github.com/Yttehs-HDX/zpacman/tree/example-archlinux)
+
+- Universal: branch [example-universal](https://github.com/Yttehs-HDX/zpacman/tree/example-universal)
+
 ## Warning
 
 The following commands are no longer working:
