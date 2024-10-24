@@ -1,1 +1,4 @@
-plugins.zsh.zwc
+*.zwc
+
+/config/plugins.zsh
+/config/plugins.zsh.bak
