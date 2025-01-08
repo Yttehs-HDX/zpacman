@@ -38,6 +38,7 @@ plugins=(
 	ufw
 	vscode
 	web-search
+	yarn
 	z
 	zsh-autosuggestions	# https://github.com/zsh-users/zsh-autosuggestions
 	zsh-random-quotes	# https://github.com/vkolagotla/zsh-random-quotes
