@@ -14,7 +14,7 @@ alias eza='exa --icons'
 alias tree='ls --tree'
 
 # functions
-y() {
+function y() {
 	yaupg	# update all packages
 	yaclean # clean cache
 	if pacman -Qtdq | grep -q "^"; then
