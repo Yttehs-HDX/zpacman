@@ -20,6 +20,7 @@ function yall() {
 	if pacman -Qtdq | grep -q "^"; then
 		pacrmorphans # clean unused packages
 	fi
+	yay -Yc
 }
 
 # custom settings
