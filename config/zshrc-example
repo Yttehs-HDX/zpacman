@@ -17,9 +17,7 @@ alias tree='ls --tree'
 function yall() {
 	yaupg	# update all packages
 	yaclean # clean cache
-	if pacman -Qtdq | grep -q "^"; then
-		pacrmorphans # clean unused packages
-	fi
+	pacrmorphans | true # clean unused packages
 	yay -Ycc
 }
 
