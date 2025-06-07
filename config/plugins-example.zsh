@@ -35,6 +35,7 @@ plugins=(
 	sudo
 	tmux
 	ufw
+	uv
 	vscode
 	web-search
 	z
